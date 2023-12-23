@@ -8,7 +8,7 @@
 void execute_command(char* command) {
     // This is where you would parse and execute the command.
     // For now, we'll just print it out.
-    printf("Executing command: %s\n", command);
+    printf("lashell is now executing command: %s\n", command);
 }
 
 int main() {
