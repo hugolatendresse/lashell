@@ -90,16 +90,19 @@ int lsh_launch(char **args)
 }
 
 int lsh_cd(char **args);
+int lsh_cwd();
 int lsh_help(char **args);
 int lsh_exit(char **args);
 
 char *builtin_str[] = {
     "cd",
+    "cwd",
     "help",
     "exit"};
 
 int (*builtin_func[])(char **) = {
     &lsh_cd,
+    &lsh_cwd,
     &lsh_help,
     &lsh_exit};
 
@@ -122,6 +125,16 @@ int lsh_cd(char **args)
         }
     }
     return 1;
+}
+
+int lsh_cwd()
+{
+    char cwd[1024];
+    if (getcwd(cwd, sizeof(cwd)) != NULL) {
+        printf("%s\n", cwd);
+    } else{
+        perror("lsh: getcwd");
+    }
 }
 
 int lsh_help(char **args)
